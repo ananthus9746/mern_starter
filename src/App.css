@@ -1,42 +1,157 @@
-#root {
-  max-width: 1280px;
+
+.tabs-header {
+  display: flex;
+  border-bottom: 1px solid gray;
+}
+
+.tab {
+  padding: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+  margin-bottom: -1px;
+  color: #898989;
+
+}
+
+.tab.active {
+  border-bottom: 3px solid #2C59F8;
+  color: #ffffff;
+
+}
+
+.tabs-content {
+  margin-top: 10px;
+  border: 1px solid #007bff;
+  padding: 10px;
+}
+
+
+.Lara_Ai{
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.pendulum-container {
+  position: relative;
+  width:  650px;
+  height:  148px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  overflow: hidden;
+
+  margin-left: 30px;
+
+  border-radius: 20px;
+
+
+  background-color: #6b6b6b;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.pendulum-image {
+  width: 820px;
+  height: 100%;
+  background-image: url('./andrew-kliatskyi-r4HT6aurLQw-unsplash.jpg');
+  /* Replace with your image URL */
+  background-size: cover;
+  position: absolute;
+  bottom: 0;
+  animation: pendulumAnimation 5s ease-in-out infinite;
+  /* animation: shake-horizontal 10s cubic-bezier(0.770, 0.000, 0.175, 1.000) 20s infinite both; */
+
+
 }
 
-@keyframes logo-spin {
-  from {
+
+
+
+@keyframes pendulumAnimation {
+  0%,
+  100% {
+    left: 0;
+    transform-origin: 100% 100%;
+
+  }
+ 
+  100%,
+  50%,
+  60%
+   {
+    left: -30px;
+    transform-origin: 50% 100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+
+/*MESSAGE*/
+.load{
+  position: relative;
+  right: 150px;
+  z-index: 1;
+}
+.loader {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  
+  -webkit-box-shadow: 0px -1px 35px 0px rgba(194, 64, 194, 0.619);
+  -moz-box-shadow: 0px -1px 35px 0px rgba(194, 64, 194, 0.619);
+  box-shadow: 0px -1px 35px 0px rgba(194, 64, 194, 0.619);
+  
+
+}
+
+.loader:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: #240229;
+  border-radius: 50%;
+  border: 2px solid #240229;
+}
+
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -11;
+  background: linear-gradient(180deg, #7000FF 0%, #FF00B8 100%),
+    linear-gradient(0deg, #0F0F0F, #0F0F0F);
+  filter: blur(20px);
+  animation: animate .7s linear infinite;
+}
+
+@keyframes animate {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.send {
+  z-index: 10220;
+  background-color: aqua;
+  width: 200px;
 }
 
-.card {
-  padding: 2em;
+/* Center the logo */
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.read-the-docs {
-  color: #888;
+.logo-img {
+  width: 40px;
+  height:40px;
 }

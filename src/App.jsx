@@ -1,38 +1,35 @@
-import  { useState, useEffect } from "react";
 
-function App() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+import React, { useState } from "react";
+import "./App.css"; // Import the CSS file for styling
+import Tab from "./Tab";
+import TabContent1 from "./components/TabContent1";
+import TabContent2 from "./components/TabContent2";
+import TabContent3 from "./components/TabContent3";
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/demo");
-        const jsonData = await response.json();
-        console.log("jsonData..",jsonData)
-        setData(jsonData);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setLoading(false);
-      }
-    };
+const App = () => {
+  const [isTab1Complete, setTab1Complete] = useState(false);
+  const [isTab2CheckboxChecked, setTab2CheckboxChecked] = useState(false);
 
-    fetchData();
-  }, []);
+  const handleTab1Complete = (isChecked) => {
+    setTab1Complete(isChecked);
+  };
+
+  const handleTab2CheckboxChange = (isChecked) => {
+    setTab2CheckboxChecked(isChecked);
+  };
+
+  const tabsData = [
+    { label: "Tab 1", content: <TabContent1 onTab1Complete={handleTab1Complete} />, disabled: false },
+    { label: "Tab 2", content: isTab1Complete ? <TabContent2 onTab2CheckboxChange={handleTab2CheckboxChange} /> : null, disabled: !isTab1Complete },
+    { label: "Tab 3", content: isTab2CheckboxChecked ? <TabContent3 /> : null, disabled: !isTab2CheckboxChecked },
+  ];
+
   return (
-    <>
-      <div>
-        {loading ? (
-          <p>Loading...</p>
-        ) : data ? (
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-        ) : (
-          <p>No data available.</p>
-        )}
-      </div>
-    </>
+    <div className="">
+      <h1>Tab Component Example</h1>
+      <Tab tabs={tabsData} />
+    </div>
   );
-}
+};
 
 export default App;
